@@ -8,6 +8,7 @@
  /* Definición de tokens */
 enum yytokentype {
     NUMBER = 258,
+    IDENT = 259
     /* TODO 1 — Agregar IDENT = 259 en el enum */
 };
 
@@ -25,6 +26,11 @@ identificador   {letra}({letra}|{digito})*
     yylval = atoi(yytext);
     printf("TOKEN NUMBER (%d) valor=%d\n", NUMBER, yylval);
     return NUMBER;
+}
+
+{identificador} {
+    printf("TOKEN IDENT (%d) lexema=%s\n", IDENT, yytext);
+    return IDENT;
 }
 
 "+"  { printf("TOKEN '+'\n"); return '+'; }
